@@ -1,5 +1,5 @@
 FROM docker.io/centos:latest
 MAINTAINER qinkaiqian
 USER root
-COPY factory.repo /etc/yum.repos.d/csf-artifactory.repo
+COPY CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo
 RUN yum update -y
