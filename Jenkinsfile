@@ -5,7 +5,8 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-	          sh 'pwd'
+	      sh 'pwd'
+	      sh 'docker build --no-cache  -t mgw_build-124 .'
       }
     }
   }
