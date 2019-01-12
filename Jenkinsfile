@@ -6,9 +6,8 @@ pipeline {
     stage('Build') {
       steps {
 	      sh 'pwd'
-	      sh 'whoami'
-	      sh 'which docker'
-	      sh 'ls `which docker`'
+	      sh 'ls'
+	      sh 'docker ps'
       }
     }
   }
