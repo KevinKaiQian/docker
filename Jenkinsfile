@@ -8,6 +8,7 @@ pipeline {
 	      sh 'pwd'
 	      sh 'ls'
 	      sh 'docker ps'
+	      sh 'sleep 200'
       }
     }
   }
