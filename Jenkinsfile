@@ -7,8 +7,8 @@ pipeline {
       steps {
 	      sh 'pwd'
 	      sh 'ls'
-	      sh 'ls ../'
-	      sh 'docker ps'
+	      sh 'cd jenkinsfile'
+	      sh 'docker build -t hhhh .'
 	      sh 'sleep 200'
       }
     }
