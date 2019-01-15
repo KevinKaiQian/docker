@@ -10,13 +10,14 @@ pipeline {
     latest_tag_name = "latest"
     EXTRA_BUILD_ARGS = "--no-cache"
     BUILDID = "${env.BUILD_ID}"
-	SRC_DIR = "scripts/jenkins/mgw_build_docker"
+    SRC_DIR = "scripts/jenkins/mgw_build_docker"
   }
   stages {
     stage('Build') {
       steps {
 	      sh 'pwd'
 	      sh 'ls'
+	      sh 'env'
 	      sh 'docker build -t hhhh jenkinsfile'
 	      sh 'sleep 200'
       }
