@@ -1,7 +1,13 @@
 #!/usr/bin/env groovy
 
 pipeline {
-  agent none
+		agent {
+			docker {
+				image '135.251.149.68:5000/mgw_build:latest'
+				args '--rm -u 0:0 --privileged --cpus 6 -v /var/run/docker.sock:/var/run/docker.sock -v /var/run/libvirt/libvirt-sock:/var/run/libvirt/libvirt-sock -v /root/.ssh/:/root/.ssh/ -v /home/jenkins/:/home/jenkins/ -v /viewstores/third-party/:/viewstores/third-party/ -v /tmp/:/tmp/'
+
+			}
+		}
   environment {
     DOCKER_IMAGE = "mgw_build"
     SOURCE_REPO = "sbc-docker-candidates"
@@ -21,14 +27,24 @@ pipeline {
     timestamps()
   }
   stages {
-    stage('download images') {
-		agent {
-			docker {
-				image '135.251.149.68:5000/mgw_build:latest'
-				args '--rm -u 0:0 --privileged --cpus 6 -v /var/run/docker.sock:/var/run/docker.sock -v /var/run/libvirt/libvirt-sock:/var/run/libvirt/libvirt-sock -v /root/.ssh/:/root/.ssh/ -v /home/jenkins/:/home/jenkins/ -v /viewstores/third-party/:/viewstores/third-party/ -v /tmp/:/tmp/'
 
-			}
-		}
+    stage(' images') {
+
+      script {
+            try {
+              echo "Any code with error"
+            } catch(err) {
+              echo "Error"
+            }
+        
+      }
+
+	  
+    }
+
+
+    stage('download images') {
+
 		steps {
 			sh '''
 				pwd
