@@ -1,0 +1,46 @@
+#!/usr/bin/env groovy
+
+pipeline {
+  agent none
+  environment {
+    DOCKER_IMAGE = "mgw_build"
+    SOURCE_REPO = "sbc-docker-candidates"
+    TARGET_REPO = "sbc-docker-releases"
+    tag_name = "${Calendar.getInstance()format('yyyyMMddHHmmss')}"
+    latest_tag_name = "latest"
+    EXTRA_BUILD_ARGS = "--no-cache"
+    BUILDID = "${env.BUILD_ID}"
+    SRC_DIR = "scripts/jenkins/mgw_branch_build"
+  }
+
+
+  options {
+    disableConcurrentBuilds()
+    timeout(time: 2, unit: 'DAYS')
+    buildDiscarder(logRotator(daysToKeepStr: '7', artifactDaysToKeepStr: '0'))
+    timestamps()
+  }
+  stages {
+    stage('download images') {
+		agent {
+			docker {
+				image '135.251.149.68:5000/mgw_build:latest'
+				args '--rm -u 0:0 --privileged --cpus 6 -v /var/run/docker.sock:/var/run/docker.sock -v /var/run/libvirt/libvirt-sock:/var/run/libvirt/libvirt-sock -v /root/.ssh/:/root/.ssh/ -v /home/jenkins/:/home/jenkins/ -v /viewstores/third-party/:/viewstores/third-party/ -v /tmp/:/tmp/'
+
+			}
+		}
+		steps {
+			sh '''
+				pwd
+				#yum install qemu-kvm libvirt virt-install libguestfs-tools -y > /dev/null 2>1&
+			'''
+		}
+	  
+    }
+
+  }
+
+}
+
+
+
