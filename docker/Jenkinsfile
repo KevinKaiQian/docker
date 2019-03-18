@@ -1,5 +1,4 @@
-#!/usr/bin/env groovy
-
+Jenkinsfile (Declarative Pipeline)
 pipeline {
 		agent {
 			docker {
@@ -8,55 +7,18 @@ pipeline {
 
 			}
 		}
-  environment {
-    DOCKER_IMAGE = "mgw_build"
-    SOURCE_REPO = "sbc-docker-candidates"
-    TARGET_REPO = "sbc-docker-releases"
-    tag_name = "${Calendar.getInstance()format('yyyyMMddHHmmss')}"
-    latest_tag_name = "latest"
-    EXTRA_BUILD_ARGS = "--no-cache"
-    BUILDID = "${env.BUILD_ID}"
-    SRC_DIR = "scripts/jenkins/mgw_branch_build"
-  }
+    stages {
+        stage('Example') {
+            steps {
+                echo 'Hello World'
 
-
-  options {
-    disableConcurrentBuilds()
-    timeout(time: 2, unit: 'DAYS')
-    buildDiscarder(logRotator(daysToKeepStr: '7', artifactDaysToKeepStr: '0'))
-    timestamps()
-  }
-  stages {
-
-    stage(' images') {
-
-      script {
-            try {
-              echo "Any code with error"
-            } catch(err) {
-              echo "Error"
+                script {
+                    def browsers = ['chrome', 'firefox']
+                    for (int i = 0; i < browsers.size(); ++i) {
+                        echo "Testing the ${browsers[i]} browser"
+                    }
+                }
             }
-        
-      }
-
-	  
+        }
     }
-
-
-    stage('download images') {
-
-		steps {
-			sh '''
-				pwd
-				#yum install qemu-kvm libvirt virt-install libguestfs-tools -y > /dev/null 2>1&
-			'''
-		}
-	  
-    }
-
-  }
-
 }
-
-
-
