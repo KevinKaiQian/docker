@@ -12,7 +12,9 @@ pipeline {
     stages {
         stage('Example') {
             steps {
+		sh 'sleep 10'
                 echo 'Hello World'
+		sh 'sleep 10'
 		
                 script {
                     def browsers = ['chrome']
@@ -20,7 +22,7 @@ pipeline {
                         echo "Testing the ${browsers[i]} browser"
 		   }
                 }
-		sleep 100
+		sleep 10
             }
         }
     }
