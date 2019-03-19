@@ -4,7 +4,7 @@ pipeline {
 	agent {
 		docker {
 			image '135.251.149.68:5000/mgw_build:latest'
-			args '--rm  --privileged -t --init --cpus 6 -v /var/run/docker.sock:/var/run/docker.sock -v /var/run/libvirt/libvirt-sock:/var/run/libvirt/libvirt-sock -v /root/.ssh/:/root/.ssh/ -v /home/jenkins/:/home/jenkins/ -v /viewstores/third-party/:/viewstores/third-party/ -v /tmp/:/tmp/ -v /var/tmp/:/var/tmp/'
+			args '--rm  --privileged  --cpus 6 -v /var/run/docker.sock:/var/run/docker.sock -v /var/run/libvirt/libvirt-sock:/var/run/libvirt/libvirt-sock -v /root/.ssh/:/root/.ssh/ -v /home/jenkins/:/home/jenkins/ -v /viewstores/third-party/:/viewstores/third-party/ -v /tmp/:/tmp/ -v /var/tmp/:/var/tmp/'
 
 
 		}
