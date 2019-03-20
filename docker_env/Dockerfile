@@ -7,8 +7,9 @@ USER root
 
 
 RUN     yum install -y hostname vim git flex bison 
+RUN         yum install qemu-kvm libvirt virt-install libguestfs-tools -y
  
 
 
-ENTRYPOINT [ "/bin/sh","-c" ]
+ENTRYPOINT [ "/bin/bash","-c" ]
 
