@@ -9,5 +9,6 @@ USER root
 RUN     yum install -y hostname vim git flex bison 
  
 
-CMD ["/bin/bash"]
+
+ENTRYPOINT [ "/bin/bash" ]
 
