@@ -10,5 +10,5 @@ RUN     yum install -y hostname vim git flex bison
  
 
 
-ENTRYPOINT [ "/bin/bash" ]
+ENTRYPOINT [ "/bin/sh","-c" ]
 
